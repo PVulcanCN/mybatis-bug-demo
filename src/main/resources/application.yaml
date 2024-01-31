@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: mybatis-demo
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DATABASE_URL:172.30.183.224}:${DATABASE_PORT:3306}/seata_demo?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&connectionTimeZone=Asia/Shanghai
+    username: ${DATABASE_USERNAME:saas_out}
+    password: ${DATABASE_PASSWORD:saas_out@2021}
+
+server:
+  port: 10024
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: deleted # ????????????(since 3.3.0,????????????2)
+  mapper-locations: classpath*:com/lcyf/cloud/**/mapper/xml/*.xml
+  configuration:
+    jdbc-type-for-null: 'null'
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    local-cache-scope: statement
